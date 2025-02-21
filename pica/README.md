@@ -24,7 +24,7 @@ import (
 
 type HelloPica struct{}
 
-// Return the current weather for a given location
+// Returns the current weather for a given location
 func (m *HelloPica) CurrentWeather(ctx context.Context, location string, picaApiKey *dagger.Secret, openaiApiKey *dagger.Secret) (string, error) {
 	prompt := fmt.Sprintf("What's the weather in %s?", location)
 	return dag.Pica(picaApiKey, openaiApiKey).OneTool(ctx, prompt)
