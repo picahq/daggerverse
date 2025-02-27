@@ -3,7 +3,7 @@
   "dependencies": {
     "@ai-sdk/openai": "^1.1.13",
     "@dagger.io/dagger": "./sdk",
-    "@picahq/ai": "^2.0.8",
+    "@picahq/ai": "^2.1.1",
     "ai": "^4.1.45",
     "typescript": "^5.5.4"
   },
