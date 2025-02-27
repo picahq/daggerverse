@@ -11,7 +11,7 @@ import { Pica as PicaAI } from "@picahq/ai";
 @object()
 export class Pica {
   @func()
-  picaApiKey: Secret;
+  picaSecretKey: Secret;
   @func()
   openaiApiKey: Secret;
 
@@ -19,26 +19,26 @@ export class Pica {
     /*
      * Pica API key
      */
-    picaApiKey: Secret,
+    picaSecretKey: Secret,
     /*
      * OpenAI API key
      */
     openaiApiKey: Secret,
   ) {
-    this.picaApiKey = picaApiKey;
+    this.picaSecretKey = picaSecretKey;
     this.openaiApiKey = openaiApiKey;
   }
 
   /**
    * Returns the response from ChatGPT using the supplied prompt and any connected integrations
    *
-   * @param prompt The prompt to send to the ChatGPT
+   * @param prompt The prompt to send to ChatGPT
    */
   @func()
   async oneTool(prompt: string): Promise<string> {
-    const plaintextPicaApiKey = await this.picaApiKey.plaintext();
+    const plaintextPicaSecretKey = await this.picaSecretKey.plaintext();
     const plaintextOpenaiApiKey = await this.openaiApiKey.plaintext();
-    const pica = new PicaAI(plaintextPicaApiKey);
+    const pica = new PicaAI(plaintextPicaSecretKey);
     const systemPrompt = await pica.generateSystemPrompt();
     const openai = createOpenAI({ apiKey: plaintextOpenaiApiKey });
 
